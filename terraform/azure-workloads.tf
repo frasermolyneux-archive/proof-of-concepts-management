@@ -52,14 +52,14 @@ resource "azurerm_role_assignment" "owner" {
 }
 
 resource "azuread_directory_role_assignment" "directory_writers" {
-  for_each = { for each in local.workload_directory_roles : each.directory_assignment_key => each }
+  for_each = { for each in var.workloads : each.name => each }
 
   role_id             = azuread_directory_role.builtin["Directory Writers"].template_id
   principal_object_id = azuread_service_principal.workload[each.value.name].object_id
 }
 
 resource "azuread_directory_role_assignment" "cloud_application_administrator" {
-  for_each = { for each in local.workload_directory_roles : each.directory_assignment_key => each }
+  for_each = { for each in var.workloads : each.name => each }
 
   role_id             = azuread_directory_role.builtin["Cloud application administrator"].template_id
   principal_object_id = azuread_service_principal.workload[each.value.name].object_id
