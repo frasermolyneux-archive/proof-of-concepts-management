@@ -38,7 +38,7 @@ resource "azuread_service_principal" "workload" {
   ]
 }
 
-resource "github_repository_environment" "poc" {
+resource "github_repository_environment" "workload" {
   for_each = { for each in var.workloads : each.name => each }
 
   environment = "POC"
