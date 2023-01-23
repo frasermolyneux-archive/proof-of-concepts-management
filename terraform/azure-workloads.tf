@@ -18,7 +18,7 @@ resource "github_repository" "workload" {
 resource "azuread_application" "workload" {
   for_each = { for each in var.workloads : each.name => each }
 
-  display_name = format("spn-%s-poc", lower(each.value.workload_name))
+  display_name = format("spn-%s-poc", lower(each.value.name))
 
   owners = [
     data.azuread_client_config.current.object_id
