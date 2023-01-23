@@ -3,7 +3,7 @@ location    = "uksouth"
 
 tags = {
   Environment = "poc",
-  Workload    = "poc-terraform-template",
+  Workload    = "proof-of-concepts-management",
   DeployedBy  = "GitHub-Terraform",
-  Git         = "https://github.com/frasermolyneux/poc-tenant-permissions"
+  Git         = "https://github.com/frasermolyneux/proof-of-concepts-management"
 }
