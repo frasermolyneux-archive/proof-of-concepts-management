@@ -48,17 +48,17 @@ resource "github_repository_environment" "poc" {
 resource "github_actions_environment_secret" "client_id" {
   for_each = { for each in var.workloads : each.name => each }
 
-  repository      = github_repository.workload[each.value.workload_name].name
-  environment     = github_repository_environment.workload[each.key].environment
+  repository      = github_repository.workload[each.value.name].name
+  environment     = github_repository_environment.workload[each.value.name].environment
   secret_name     = "AZURE_CLIENT_ID"
-  plaintext_value = azuread_application.workload[each.key].application_id
+  plaintext_value = azuread_application.workload[each.value.name].application_id
 }
 
 resource "github_actions_environment_secret" "subscription_id" {
   for_each = { for each in var.workloads : each.name => each }
 
-  repository      = github_repository.workload[each.value.workload_name].name
-  environment     = github_repository_environment.workload[each.key].environment
+  repository      = github_repository.workload[each.value.name].name
+  environment     = github_repository_environment.workload[each.value.name].environment
   secret_name     = "AZURE_SUBSCRIPTION_ID"
   plaintext_value = "ecc74148-1a84-4ec7-99bb-d26aba7f9c0d"
 }
@@ -66,8 +66,8 @@ resource "github_actions_environment_secret" "subscription_id" {
 resource "github_actions_environment_secret" "tenant_id" {
   for_each = { for each in var.workloads : each.name => each }
 
-  repository      = github_repository.workload[each.value.workload_name].name
-  environment     = github_repository_environment.workload[each.key].environment
+  repository      = github_repository.workload[each.value.name].name
+  environment     = github_repository_environment.workload[each.value.name].environment
   secret_name     = "AZURE_TENANT_ID"
   plaintext_value = "76c09fbf-22c7-4ac4-9fdd-9f8f9c19e856"
 }
