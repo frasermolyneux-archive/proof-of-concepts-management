@@ -43,6 +43,17 @@ resource "azuread_service_principal" "workload" {
   ]
 }
 
+resource "azuread_application_federated_identity_credential" "workload" {
+  for_each = { for each in var.workloads : each.name => each }
+
+  application_object_id = azuread_application.workload[each.value.name].object_id
+  display_name          = format("github-%s-poc", lower(each.value.name))
+  description           = "GitHub Actions"
+  audiences             = ["api://AzureADTokenExchange"]
+  issuer                = "https://token.actions.githubusercontent.com"
+  subject               = format("repo:frasermolyneux/poc-%s:environment:POC", lower(each.value.name))
+}
+
 resource "azurerm_role_assignment" "owner" {
   for_each = { for each in var.workloads : each.name => each }
 
