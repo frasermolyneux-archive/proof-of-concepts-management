@@ -98,3 +98,49 @@ resource "github_actions_environment_secret" "tenant_id" {
   secret_name     = "AZURE_TENANT_ID"
   plaintext_value = "76c09fbf-22c7-4ac4-9fdd-9f8f9c19e856"
 }
+
+// These really should be variables not secrets, can't see the terraform resource for that though
+resource "github_actions_environment_secret" "tf_backend_subscription_id" {
+  for_each = { for each in var.workloads : each.name => each }
+
+  repository      = github_repository.workload[each.value.name].name
+  environment     = github_repository_environment.workload[each.value.name].environment
+  secret_name     = "tf_backend_subscription_id"
+  plaintext_value = "ecc74148-1a84-4ec7-99bb-d26aba7f9c0d"
+}
+
+resource "github_actions_environment_secret" "tf_backend_resource_group_name" {
+  for_each = { for each in var.workloads : each.name => each }
+
+  repository      = github_repository.workload[each.value.name].name
+  environment     = github_repository_environment.workload[each.value.name].environment
+  secret_name     = "tf_backend_resource_group_name"
+  plaintext_value = format("rg-tf-%s-poc-uksouth", each.value.name)
+}
+
+resource "github_actions_environment_secret" "tf_backend_storage_account_name" {
+  for_each = { for each in var.workloads : each.name => each }
+
+  repository      = github_repository.workload[each.value.name].name
+  environment     = github_repository_environment.workload[each.value.name].environment
+  secret_name     = "tf_backend_storage_account_name"
+  plaintext_value = format("sa%s", each.value.name)
+}
+
+resource "github_actions_environment_secret" "tf_backend_container_name" {
+  for_each = { for each in var.workloads : each.name => each }
+
+  repository      = github_repository.workload[each.value.name].name
+  environment     = github_repository_environment.workload[each.value.name].environment
+  secret_name     = "tf_backend_container_name"
+  plaintext_value = "tfstate"
+}
+
+resource "github_actions_environment_secret" "tf_backend_key" {
+  for_each = { for each in var.workloads : each.name => each }
+
+  repository      = github_repository.workload[each.value.name].name
+  environment     = github_repository_environment.workload[each.value.name].environment
+  secret_name     = "tf_backend_key"
+  plaintext_value = "terraform.tfstate"
+}
