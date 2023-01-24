@@ -135,7 +135,7 @@ resource "github_actions_environment_secret" "tf_backend_storage_account_name" {
   repository      = github_repository.workload[each.value.name].name
   environment     = github_repository_environment.workload[each.value.name].environment
   secret_name     = "tf_backend_storage_account_name"
-  plaintext_value = format("sa%s", each.value.name)
+  plaintext_value = format("sa%s", replace(each.value.name, "poc-", "")
 }
 
 resource "github_actions_environment_secret" "tf_backend_container_name" {
