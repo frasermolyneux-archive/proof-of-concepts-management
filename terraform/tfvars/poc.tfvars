@@ -40,5 +40,13 @@ workloads = [
       topics      = ["azure", "terraform", "azure-integration-services", "github-actions", "apim", "functions", "service-bus", "logic-apps"]
       visibility  = "public"
     }
+  },
+  {
+    name = "poc-bpr4zbka3iv50t2"
+    github = {
+      description = "This repository contains a proof of concept for using environments and Virtual Machine targets for IIS deployments with YAML pipelines in Azure DevOps."
+      topics      = ["azure-pipelines", "virtual-machines", "yaml", "iis", "environments", "devops"]
+      visibility  = "public"
+    }
   }
 ]
