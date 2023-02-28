@@ -32,5 +32,13 @@ workloads = [
       topics      = ["azure", "terraform", "github-actions", "multi-region", "frontdoor", "waf", "dotnet-7", "app-services"]
       visibility  = "public"
     }
+  },
+  {
+    name = "poc-secure-func-terraform"
+    github = {
+      description = "This repository contains a proof of concept for deploying a function app with virtual network integration and private endpoints."
+      topics      = ["azure", "terraform", "github-actions", "function-app", "vnet-integration", "private-endpoints"]
+      visibility  = "public"
+    }
   }
 ]
