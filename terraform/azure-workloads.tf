@@ -15,7 +15,7 @@ resource "github_repository" "workload" {
   vulnerability_alerts = true
 
   template {
-    owner = "frasermolyneux"
+    owner      = "frasermolyneux"
     repository = "proof-of-concept-template"
   }
 }
@@ -129,13 +129,19 @@ resource "github_actions_environment_secret" "tf_backend_resource_group_name" {
   plaintext_value = format("rg-tf-%s-poc-uksouth", each.value.name)
 }
 
+resource "random_id" "storage_account_name" {
+  for_each = { for each in var.workloads : each.name => each }
+
+  byte_length = 6
+}
+
 resource "github_actions_environment_secret" "tf_backend_storage_account_name" {
   for_each = { for each in var.workloads : each.name => each }
 
   repository      = github_repository.workload[each.value.name].name
   environment     = github_repository_environment.workload[each.value.name].environment
   secret_name     = "tf_backend_storage_account_name"
-  plaintext_value = format("sa%s", replace(each.value.name, "poc-", ""))
+  plaintext_value = format("sa%s", random_id.storage_account_name[each.value.name].hex)
 }
 
 resource "github_actions_environment_secret" "tf_backend_container_name" {
