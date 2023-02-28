@@ -48,5 +48,13 @@ workloads = [
       topics      = ["azure-pipelines", "virtual-machines", "yaml", "iis", "environments", "devops"]
       visibility  = "public"
     }
+  },
+  {
+    name = "poc-x6iyx9ly23nvyvt"
+    github = {
+      description = "This repository contains a proof of concept for for managing an Azure WAF policy using Bicep."
+      topics      = ["azure", "web-application-firewall", "policy", "managed-rule-sets", "bicep", "github-actions"]
+      visibility  = "public"
+    }
   }
 ]
