@@ -56,5 +56,13 @@ workloads = [
       topics      = ["azure", "web-application-firewall", "policy", "managed-rule-sets", "bicep", "github-actions"]
       visibility  = "public"
     }
+  },
+  {
+    name = "poc-multiregion-app-terraform"
+    github = {
+      description = "This repository contains a proof of concept for a multi-region deployment of an .NET 7 Web Application using Azure Front Door, Azure Web Application Firewall and Azure App Services."
+      topics      = ["azure", "terraform", "github-actions", "multi-region", "frontdoor", "waf", "dotnet-7", "app-services"]
+      visibility  = "public"
+    }
   }
 ]
