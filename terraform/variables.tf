@@ -20,6 +20,8 @@ variable "workloads" {
 
       visibility = optional(string, "private")
 
+      template_repository = optional(string, "poc-terraform-template")
+
       has_downloads = optional(bool, true)
       has_issues    = optional(bool, true)
       has_projects  = optional(bool, true)

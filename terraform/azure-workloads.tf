@@ -16,7 +16,7 @@ resource "github_repository" "workload" {
 
   template {
     owner      = "frasermolyneux"
-    repository = "proof-of-concept-template"
+    repository = each.value.github.template_repository
   }
 }
 
