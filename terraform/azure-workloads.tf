@@ -161,3 +161,33 @@ resource "github_actions_environment_secret" "tf_backend_key" {
   secret_name     = "tf_backend_key"
   plaintext_value = "terraform.tfstate"
 }
+
+// ADO Service Connection
+
+resource "azuread_application_password" "workload" {
+  for_each = { for each in var.workloads : each.name => each if each.create_ado_connection }
+
+  display_name          = format("azdo-%s", lower(each.value.name))
+  application_object_id = azuread_application.workload[each.value.name].object_id
+
+  rotate_when_changed = {
+    rotation = time_rotating.rotate.id
+  }
+}
+
+resource "azuredevops_serviceendpoint_azurerm" "workload" {
+  for_each = { for each in var.workloads : each.name => each if each.create_ado_connection }
+
+  project_id            = data.azuredevops_project.msft.id
+  service_endpoint_name = azuread_application.workload[each.value.name].display_name
+  description           = "Managed By proof-of-concepts-management"
+
+  credentials {
+    serviceprincipalid  = azuread_service_principal.workload[each.value.name].application_id
+    serviceprincipalkey = azuread_application_password.workload[each.key].value
+  }
+
+  azurerm_spn_tenantid      = "76c09fbf-22c7-4ac4-9fdd-9f8f9c19e856"
+  azurerm_subscription_id   = data.azurerm_client_config.current.subscription_id
+  azurerm_subscription_name = "ME-MngEnv102652-fmolyneux"
+}

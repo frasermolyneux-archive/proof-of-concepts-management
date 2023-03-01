@@ -14,6 +14,8 @@ variable "workloads" {
   type = list(object({
     name = string
 
+    create_ado_connection = optional(bool, false)
+
     github = object({
       description = string
       topics      = optional(list(string), [])

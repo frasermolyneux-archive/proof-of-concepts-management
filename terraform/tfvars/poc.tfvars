@@ -46,7 +46,8 @@ workloads = [
     }
   },
   {
-    name = "poc-mkdocs-ado-bicep"
+    name                  = "poc-mkdocs-ado-bicep"
+    create_ado_connection = true
     github = {
       description         = "This repository contains a proof of concept for building and deploying a markdown docs site into an app service with authentication using Azure DevOps and Bicep."
       topics              = ["azure", "bicep", "azure-pipelines", "app-services", "authentication", "devops", "markdown", "mkdocs"]
