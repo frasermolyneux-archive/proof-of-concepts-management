@@ -44,5 +44,14 @@ workloads = [
       visibility          = "public"
       template_repository = "poc-terraform-template"
     }
+  },
+  {
+    name = "poc-mkdocs-ado-bicep"
+    github = {
+      description         = "This repository contains a proof of concept for building and deploying a markdown docs site into an app service with authentication using Azure DevOps and Bicep."
+      topics              = ["azure", "bicep", "azure-pipelines", "app-services", "authentication", "devops", "markdown", "mkdocs"]
+      visibility          = "public"
+      template_repository = "poc-bicep-template"
+    }
   }
 ]
