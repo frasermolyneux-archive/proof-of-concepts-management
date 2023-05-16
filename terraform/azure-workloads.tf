@@ -191,3 +191,11 @@ resource "azuredevops_serviceendpoint_azurerm" "workload" {
   azurerm_subscription_id   = data.azurerm_client_config.current.subscription_id
   azurerm_subscription_name = "ME-MngEnv102652-fmolyneux"
 }
+
+resource "azuredevops_resource_authorization" "workload" {
+  for_each = { for each in var.workloads : each.name => each if each.create_ado_connection }
+
+  project_id  = data.azuredevops_project.msft.id
+  resource_id = azuredevops_serviceendpoint_azurerm.workload[each.key].id
+  authorized  = true
+}
