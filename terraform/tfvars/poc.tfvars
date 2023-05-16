@@ -46,10 +46,11 @@ workloads = [
     }
   },
   {
-    name = "poc-la-standard-terraform"
+    name                  = "poc-la-standard-terraform"
+    create_ado_connection = true
     github = {
       description         = "This repository contains a proof of concept for deploying a logic app with virtual network integration and private endpoints."
-      topics              = ["azure", "terraform", "azure-devops", "logic-app", "vnet-integration", "private-endpoints"]
+      topics              = ["azure", "terraform", "azure-pipelines", "logic-app", "vnet-integration", "private-endpoints"]
       visibility          = "public"
       template_repository = "poc-terraform-template"
     }
