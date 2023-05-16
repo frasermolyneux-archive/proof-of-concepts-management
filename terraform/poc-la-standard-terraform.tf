@@ -36,7 +36,7 @@ resource "azuredevops_variable_group" "poc-la-standard-terraform_development" {
 
   variable {
     name  = "tf_backend_storage_account_name"
-    value = format("sa%s", random_id.storage_account_name[each.value.name].hex)
+    value = format("sa%s", random_id.storage_account_name["poc-la-standard-terraform"].hex)
   }
 
   variable {
@@ -79,7 +79,7 @@ resource "azuredevops_variable_group" "poc-la-standard-terraform_test" {
 
   variable {
     name  = "tf_backend_storage_account_name"
-    value = format("sa%s", random_id.storage_account_name[each.value.name].hex)
+    value = format("sa%s", random_id.storage_account_name["poc-la-standard-terraform"].hex)
   }
 
   variable {
@@ -122,7 +122,7 @@ resource "azuredevops_variable_group" "poc-la-standard-terraform_production" {
 
   variable {
     name  = "tf_backend_storage_account_name"
-    value = format("sa%s", random_id.storage_account_name[each.value.name].hex)
+    value = format("sa%s", random_id.storage_account_name["poc-la-standard-terraform"].hex)
   }
 
   variable {
