@@ -46,6 +46,15 @@ workloads = [
     }
   },
   {
+    name = "poc-la-standard-terraform"
+    github = {
+      description         = "This repository contains a proof of concept for deploying a logic app with virtual network integration and private endpoints."
+      topics              = ["azure", "terraform", "azure-devops", "logic-app", "vnet-integration", "private-endpoints"]
+      visibility          = "public"
+      template_repository = "poc-terraform-template"
+    }
+  },
+  {
     name                  = "poc-mkdocs-ado-bicep"
     create_ado_connection = true
     github = {
