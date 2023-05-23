@@ -64,5 +64,14 @@ workloads = [
       visibility          = "public"
       template_repository = "poc-bicep-template"
     }
+  },
+  {
+    name = "poc-moving-apps-between-plans"
+    github = {
+      description         = "This repository generates resources for moving apps between plans in Azure App Services."
+      topics              = ["azure", "terraform", "github-actions", "app-services", "logic-app", "function-app", "app-service-plan", "private-endpoints"]
+      visibility          = "public"
+      template_repository = "poc-terraform-template"
+    }
   }
 ]
