@@ -73,5 +73,15 @@ workloads = [
       visibility          = "public"
       template_repository = "poc-terraform-template"
     }
+  },
+  {
+    name                  = "poc-key-vault-demo"
+    create_ado_connection = true
+    github = {
+      description         = "This repository generates resources for a demo of Azure Key Vauult and integration with integration resources and Azure DevOps pipelines"
+      topics              = ["azure", "terraform", "github-actions", "azure-pipelines", "keyvault"]
+      visibility          = "public"
+      template_repository = "poc-terraform-template"
+    }
   }
 ]
