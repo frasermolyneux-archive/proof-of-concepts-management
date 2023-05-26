@@ -10,6 +10,15 @@ tags = {
 
 workloads = [
   {
+    name = "poc-ais-demo"
+    github = {
+      description         = "This repository generates resources for a demo of Azure Integration Services"
+      topics              = ["azure", "terraform", "github-actions", "azure-pipelines", "azure-integration-services"]
+      visibility          = "public"
+      template_repository = "poc-terraform-template"
+    }
+  },
+  {
     name = "poc-bpr4zbka3iv50t2"
     github = {
       description         = "This repository contains a proof of concept for using environments and Virtual Machine targets for IIS deployments with YAML pipelines in Azure DevOps."
