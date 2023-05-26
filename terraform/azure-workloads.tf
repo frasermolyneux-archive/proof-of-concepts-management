@@ -62,6 +62,14 @@ resource "azurerm_role_assignment" "owner" {
   principal_id         = azuread_service_principal.workload[each.value.name].object_id
 }
 
+resource "azurerm_role_assignment" "contributor" {
+  for_each = { for each in var.workloads : each.name => each }
+
+  scope                = "/subscriptions/ecc74148-1a84-4ec7-99bb-d26aba7f9c0d"
+  role_definition_name = "Contributor"
+  principal_id         = azuread_service_principal.workload[each.value.name].object_id
+}
+
 resource "azuread_directory_role_assignment" "directory_writers" {
   for_each = { for each in var.workloads : each.name => each }
 
