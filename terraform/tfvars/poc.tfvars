@@ -65,6 +65,15 @@ workloads = [
     }
   },
   {
+    name = "poc-la-standard-public-terraform"
+    github = {
+      description         = "This repository contains a proof of concept for deploying a logic app standard with public endpoints"
+      topics              = ["azure", "terraform", "azure-pipelines", "logic-app"]
+      visibility          = "public"
+      template_repository = "poc-terraform-template"
+    }
+  },
+  {
     name                  = "poc-mkdocs-ado-bicep"
     create_ado_connection = true
     github = {
