@@ -62,11 +62,11 @@ resource "azurerm_role_assignment" "owner" {
   principal_id         = azuread_service_principal.workload[each.value.name].object_id
 }
 
-resource "azurerm_role_assignment" "key_vault_secrets_officer" {
+resource "azurerm_role_assignment" "key_vault_administrator" {
   for_each = { for each in var.workloads : each.name => each }
 
   scope                = "/subscriptions/ecc74148-1a84-4ec7-99bb-d26aba7f9c0d"
-  role_definition_name = "Key Vault Secrets Officer"
+  role_definition_name = "Key Vault Administrator"
   principal_id         = azuread_service_principal.workload[each.value.name].object_id
 }
 
