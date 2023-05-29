@@ -68,7 +68,7 @@ workloads = [
     name = "poc-la-standard-public-terraform"
     github = {
       description         = "This repository contains a proof of concept for deploying a logic app standard with public endpoints"
-      topics              = ["azure", "terraform", "azure-pipelines", "logic-app"]
+      topics              = ["azure", "terraform", "github-actions", "logic-app"]
       visibility          = "public"
       template_repository = "poc-terraform-template"
     }
