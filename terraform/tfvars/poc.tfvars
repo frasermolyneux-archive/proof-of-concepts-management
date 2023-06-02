@@ -101,5 +101,14 @@ workloads = [
       visibility          = "public"
       template_repository = "poc-terraform-template"
     }
+  },
+  {
+    name = "poc-blazor-web-assembly"
+    github = {
+      description         = "https://learn.microsoft.com/en-gb/training/modules/build-blazor-webassembly-visual-studio-code/3-exercise-configure-enviromnent?pivots=vscode"
+      topics              = ["ms-learn"]
+      visibility          = "public"
+      template_repository = "poc-terraform-template"
+    }
   }
 ]
