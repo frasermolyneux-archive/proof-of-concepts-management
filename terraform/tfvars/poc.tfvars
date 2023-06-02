@@ -103,7 +103,7 @@ workloads = [
     }
   },
   {
-    name = "poc-blazor-web-assembly"
+    name = "poc-blazor-server"
     github = {
       description         = "https://learn.microsoft.com/en-gb/training/modules/build-blazor-webassembly-visual-studio-code/3-exercise-configure-enviromnent?pivots=vscode"
       topics              = ["ms-learn"]
