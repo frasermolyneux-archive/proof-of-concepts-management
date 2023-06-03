@@ -110,5 +110,14 @@ workloads = [
       visibility          = "public"
       template_repository = "poc-terraform-template"
     }
+  },
+  {
+    name = "poc-blazor-server-blazingpizza"
+    github = {
+      description         = "https://learn.microsoft.com/en-gb/training/modules/interact-with-data-blazor-web-apps/3-exercise-create-user-interfaces-with-blazor-components"
+      topics              = ["ms-learn"]
+      visibility          = "public"
+      template_repository = "poc-terraform-template"
+    }
   }
 ]
