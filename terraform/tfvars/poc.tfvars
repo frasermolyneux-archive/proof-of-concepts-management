@@ -119,5 +119,14 @@ workloads = [
       visibility          = "public"
       template_repository = "poc-terraform-template"
     }
+  },
+  {
+    name = "poc-invision-on-azure"
+    github = {
+      description         = "This repository is a proof of concept for deploying Invision Community on Azure using Terraform."
+      topics              = ["azure", "terraform", "invision"]
+      visibility          = "public"
+      template_repository = "poc-terraform-template"
+    }
   }
 ]
