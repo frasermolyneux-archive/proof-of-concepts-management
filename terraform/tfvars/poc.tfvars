@@ -128,5 +128,14 @@ workloads = [
       visibility          = "public"
       template_repository = "poc-terraform-template"
     }
-  }
+  },
+  {
+    name = "poc-appgateway-terraform"
+    github = {
+      description         = "This repository contains Terraform for deploying an application gateway"
+      topics              = ["azure", "terraform", "github-actions", "application-gateway"]
+      visibility          = "public"
+      template_repository = "poc-terraform-template"
+    }
+  },
 ]
