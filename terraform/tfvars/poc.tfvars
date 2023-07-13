@@ -138,4 +138,13 @@ workloads = [
       template_repository = "poc-terraform-template"
     }
   },
+  {
+    name = "poc-appserviceplan-upgrade"
+    github = {
+      description         = "This repository contains Terraform for deploying an app service plan and upgrading it with a destructive operation"
+      topics              = ["azure", "terraform", "github-actions", "app-service-plan", "app-service"]
+      visibility          = "public"
+      template_repository = "poc-terraform-template"
+    }
+  }
 ]
