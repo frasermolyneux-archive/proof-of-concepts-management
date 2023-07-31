@@ -31,7 +31,7 @@ resource "azuredevops_variable_group" "poc-la-standard-terraform_development" {
 
   variable {
     name  = "tf_backend_resource_group_name"
-    value = "rg-tf-poc-la-standard-terraform-poc-uksouth"
+    value = "rg-tf-poc"
   }
 
   variable {
@@ -74,7 +74,7 @@ resource "azuredevops_variable_group" "poc-la-standard-terraform_test" {
 
   variable {
     name  = "tf_backend_resource_group_name"
-    value = "rg-tf-poc-la-standard-terraform-poc-uksouth"
+    value = "rg-tf-poc"
   }
 
   variable {
@@ -117,7 +117,7 @@ resource "azuredevops_variable_group" "poc-la-standard-terraform_production" {
 
   variable {
     name  = "tf_backend_resource_group_name"
-    value = "rg-tf-poc-la-standard-terraform-poc-uksouth"
+    value = "rg-tf-poc"
   }
 
   variable {

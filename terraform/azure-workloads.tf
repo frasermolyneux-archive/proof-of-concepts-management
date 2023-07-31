@@ -134,7 +134,7 @@ resource "github_actions_environment_secret" "tf_backend_resource_group_name" {
   repository      = github_repository.workload[each.value.name].name
   environment     = github_repository_environment.workload[each.value.name].environment
   secret_name     = "tf_backend_resource_group_name"
-  plaintext_value = format("rg-tf-%s-poc-uksouth", each.value.name)
+  plaintext_value = "rg-tf-poc"
 }
 
 resource "random_id" "storage_account_name" {
