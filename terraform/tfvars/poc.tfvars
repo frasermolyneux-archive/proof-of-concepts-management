@@ -146,5 +146,14 @@ workloads = [
       visibility          = "public"
       template_repository = "poc-terraform-template"
     }
-  }
+  },
+  {
+    name = "poc-la-perf"
+    github = {
+      description         = "This repository contains some performance testing of Azure Logic Apps"
+      topics              = ["azure", "terraform", "github-actions", "azure-pipelines", "service-bus", "logic-app", "performance-testing"]
+      visibility          = "private"
+      template_repository = "poc-terraform-template"
+    }
+  },
 ]
