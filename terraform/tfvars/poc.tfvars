@@ -156,4 +156,13 @@ workloads = [
       template_repository = "poc-terraform-template"
     }
   },
+  {
+    name = "poc-la-identity"
+    github = {
+      description         = "This repository contains an example of using identities with logic appps"
+      topics              = ["azure", "terraform", "github-actions", "logic-app"]
+      visibility          = "private"
+      template_repository = "poc-terraform-template"
+    }
+  },
 ]
