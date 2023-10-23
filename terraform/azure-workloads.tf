@@ -35,7 +35,7 @@ resource "azuread_application" "workload" {
 resource "azuread_service_principal" "workload" {
   for_each = { for each in var.workloads : each.name => each }
 
-  application_id               = azuread_application.workload[each.key].application_id
+  client_id               = azuread_application.workload[each.key].client_id
   app_role_assignment_required = false
 
   owners = [
@@ -46,7 +46,7 @@ resource "azuread_service_principal" "workload" {
 resource "azuread_application_federated_identity_credential" "workload" {
   for_each = { for each in var.workloads : each.name => each }
 
-  application_object_id = azuread_application.workload[each.value.name].object_id
+  application_id        = azuread_application.workload[each.value.name].id
   display_name          = format("github-%s-poc", lower(each.value.name))
   description           = "GitHub Actions"
   audiences             = ["api://AzureADTokenExchange"]
@@ -152,6 +152,15 @@ resource "github_actions_environment_secret" "tf_backend_storage_account_name" {
   plaintext_value = format("sa%s", random_id.storage_account_name[each.value.name].hex)
 }
 
+resource "github_actions_environment_variable" "tf_backend_storage_account_name" {
+  for_each = { for each in var.workloads : each.name => each }
+
+  repository      = github_repository.workload[each.value.name].name
+  environment     = github_repository_environment.workload[each.value.name].environment
+  variable_name    = "tf_backend_storage_account_name"
+  value            = format("sa%s", random_id.storage_account_name[each.value.name].hex)
+}
+
 resource "github_actions_environment_secret" "tf_backend_container_name" {
   for_each = { for each in var.workloads : each.name => each }
 
@@ -159,6 +168,15 @@ resource "github_actions_environment_secret" "tf_backend_container_name" {
   environment     = github_repository_environment.workload[each.value.name].environment
   secret_name     = "tf_backend_container_name"
   plaintext_value = "tfstate"
+}
+
+resource "github_actions_environment_variable" "tf_backend_container_name" {
+  for_each = { for each in var.workloads : each.name => each }
+
+  repository      = github_repository.workload[each.value.name].name
+  environment     = github_repository_environment.workload[each.value.name].environment
+  variable_name    = "tf_backend_container_name"
+  value            = "tfstate"
 }
 
 resource "github_actions_environment_secret" "tf_backend_key" {
@@ -170,13 +188,22 @@ resource "github_actions_environment_secret" "tf_backend_key" {
   plaintext_value = "terraform.tfstate"
 }
 
+resource "github_actions_environment_variable" "tf_backend_key" {
+  for_each = { for each in var.workloads : each.name => each }
+
+  repository      = github_repository.workload[each.value.name].name
+  environment     = github_repository_environment.workload[each.value.name].environment
+  variable_name    = "tf_backend_key"
+  value            = "terraform.tfstate"
+}
+
 // ADO Service Connection
 
 resource "azuread_application_password" "workload" {
   for_each = { for each in var.workloads : each.name => each if each.create_ado_connection }
 
-  display_name          = format("azdo-%s", lower(each.value.name))
-  application_object_id = azuread_application.workload[each.value.name].object_id
+  display_name    = format("azdo-%s", lower(each.value.name))
+  application_id  = azuread_application.workload[each.value.name].id
 
   rotate_when_changed = {
     rotation = time_rotating.rotate.id
@@ -200,10 +227,11 @@ resource "azuredevops_serviceendpoint_azurerm" "workload" {
   azurerm_subscription_name = "ME-MngEnv102652-fmolyneux"
 }
 
-resource "azuredevops_resource_authorization" "workload" {
+resource "azuredevops_pipeline_authorization" "workload" {
   for_each = { for each in var.workloads : each.name => each if each.create_ado_connection }
 
   project_id  = data.azuredevops_project.msft.id
   resource_id = azuredevops_serviceendpoint_azurerm.workload[each.key].id
-  authorized  = true
+
+  type        = "endpoint"
 }

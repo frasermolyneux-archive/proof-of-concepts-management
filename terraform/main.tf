@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.3.6"
+  required_version = ">= 1.6.2"
 
   required_providers {
     azurerm = {
@@ -8,11 +8,11 @@ terraform {
     }
     azuredevops = {
       source  = "microsoft/azuredevops"
-      version = ">=0.1.0"
+      version = ">= 0.9.1"
     }
     github = {
       source  = "integrations/github"
-      version = "~> 5.0"
+      version = "~> 5.40.0"
     }
   }
 
@@ -21,6 +21,14 @@ terraform {
 
 provider "azurerm" {
   features {}
+}
+
+provider "azuredevops" {
+  org_service_url = "https://dev.azure.com/frasermolyneux/"
+}
+
+provider "github" {
+  owner = "frasermolyneux"
 }
 
 data "azurerm_client_config" "current" {}

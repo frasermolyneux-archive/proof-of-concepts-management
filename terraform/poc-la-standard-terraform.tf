@@ -51,7 +51,7 @@ resource "azuredevops_variable_group" "poc-la-standard-terraform_development" {
 
   variable {
     name         = "AZURE_CLIENT_ID"
-    secret_value = azuread_application.workload["poc-la-standard-terraform"].application_id
+    secret_value = azuread_application.workload["poc-la-standard-terraform"].client_id
     is_secret    = true
   }
 }
@@ -94,7 +94,7 @@ resource "azuredevops_variable_group" "poc-la-standard-terraform_test" {
 
   variable {
     name         = "AZURE_CLIENT_ID"
-    secret_value = azuread_application.workload["poc-la-standard-terraform"].application_id
+    secret_value = azuread_application.workload["poc-la-standard-terraform"].client_id
     is_secret    = true
   }
 }
@@ -137,31 +137,28 @@ resource "azuredevops_variable_group" "poc-la-standard-terraform_production" {
 
   variable {
     name         = "AZURE_CLIENT_ID"
-    secret_value = azuread_application.workload["poc-la-standard-terraform"].application_id
+    secret_value = azuread_application.workload["poc-la-standard-terraform"].client_id
     is_secret    = true
   }
 }
 
-resource "azuredevops_resource_authorization" "poc-la-standard-terraform_development" {
+resource "azuredevops_pipeline_authorization" "poc-la-standard-terraform_development" {
   project_id  = data.azuredevops_project.msft.id
   resource_id = azuredevops_variable_group.poc-la-standard-terraform_development.id
-  authorized  = true
 
   type = "variablegroup"
 }
 
-resource "azuredevops_resource_authorization" "poc-la-standard-terraform_test" {
+resource "azuredevops_pipeline_authorization" "poc-la-standard-terraform_test" {
   project_id  = data.azuredevops_project.msft.id
   resource_id = azuredevops_variable_group.poc-la-standard-terraform_test.id
-  authorized  = true
 
   type = "variablegroup"
 }
 
-resource "azuredevops_resource_authorization" "poc-la-standard-terraform_production" {
+resource "azuredevops_pipeline_authorization" "poc-la-standard-terraform_production" {
   project_id  = data.azuredevops_project.msft.id
   resource_id = azuredevops_variable_group.poc-la-standard-terraform_production.id
-  authorized  = true
 
   type = "variablegroup"
 }

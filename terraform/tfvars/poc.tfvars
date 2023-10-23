@@ -165,4 +165,14 @@ workloads = [
       template_repository = "poc-terraform-template"
     }
   },
+  {
+    name                  = "poc-terraform-connections"
+    create_ado_connection = true
+    github = {
+      description         = "This repository contains some advanced approaches to permissions management of Terraform connections"
+      topics              = ["azure", "terraform", "github-actions", "azure-pipelines"]
+      visibility          = "private"
+      template_repository = "poc-terraform-template"
+    }
+  }
 ]

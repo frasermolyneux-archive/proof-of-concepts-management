@@ -1,5 +1,6 @@
 locals {
   directory_roles = [
+    "Directory Readers",
     "Directory Writers",
     "Cloud application administrator"
   ]
